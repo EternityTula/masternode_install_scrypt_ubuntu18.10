@@ -56,7 +56,7 @@ sleep 3
     sudo systemctl enable nginx.service
     sudo systemctl start cron.service
     sudo systemctl enable cron.service
-	
+	sudo aptitude -y install pwgen
 
     
     output " "
@@ -66,7 +66,7 @@ sleep 3
     
     
     # create random password
-    rootpasswd=$(openssl rand -base64 6)
+    rootpasswd=$(pwgen 6 1)
     encryptpasswd=$(openssl passwd ${rootpasswd})
     sudo aptitude -y install software-properties-common
     sudo aptitude -y install git
