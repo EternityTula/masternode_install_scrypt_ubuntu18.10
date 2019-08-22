@@ -127,7 +127,7 @@ fi
     sudo ufw allow ssh
     sudo ufw allow http
     sudo ufw allow https
-	sudo ufw allow 19799/tcp
+	sudo ufw allow 19799
     sudo ufw --force enable
     
     
@@ -268,7 +268,7 @@ Wants=network-online.target
 [Service]
 WorkingDirectory=/root
 User=root
-ExecStart=/usr/bin/geth --gcmode archive --syncmode full --datadir /home/hora/.mnhora  --rpc --rpcaddr "127.0.0.1" --rpcvhosts=* --rpcport "8504" --networkid 19783111 --port "19799" --rpcapi "admin,db,eth,miner,net,txpool,personal,web3,debug"
+ExecStart=/usr/bin/geth --gcmode archive --syncmode full --datadir /home/hora/.mnhora  --rpc --rpcaddr "127.0.0.1" --rpcvhosts=* --rpcport "8504" --networkid 19783111 --port "19799" --rpcapi "admin,db,eth,miner,net,txpool,personal,web3,debug" --ethstats "'"${USERNAME}"'_'"${server_name::5}"':mnhora@nodes.hydnora.org:3000"
 Restart=always
 RestartSec=5s
 [Install]
