@@ -16,13 +16,51 @@ displayErr() {
 cd ~
 
 output " "
-output "Make sure you double check before hitting enter! Only one shot at these!"
+output "Read the description! enter the valid data are needed"
 output " "
 
 read -e -p "Enter time zone (See your variant https://en.wikipedia.org/wiki/List_of_tz_database_time_zones e.g. America/New_York) : " TIME
-read -e -p "Your domain name that you bought (no http:// Examle: t40xrniei8.mn.hydnoracoin.com) : " server_name
+var1=1
+while [ $var1 -gt 0 ]
+do
+read -e -p "Your domain name that you bought (no http:// Example: t40xrniei8.mn.hydnoracoin.com) : " server_name
+label=`curl -s "https://mn.hydnoracoin.com/api/v2/script?action=node_url&value=${server_name}"`
+if [ $label = "true" ]
+then
+break
+fi
+output " "
+output "Error: Invalid Domain"
+output " "
+done
+
+var1=1
+while [ $var1 -gt 0 ]
+do
 read -e -p "Enter your username (which you registered on the site https://mn.hydnoracoin.com) : " USERNAME
+label=`curl -s "https://mn.hydnoracoin.com/api/v2/script?action=user&value=${USERNAME}"`
+if [ $label = "true" ]
+then
+break
+fi
+output " "
+output "Error: Invalid USERNAME"
+output " "
+done
+
+var1=1
+while [ $var1 -gt 0 ]
+do
 read -e -p "Enter your e-mail (which you registered on the site https://mn.hydnoracoin.com) : " EMAIL
+label=`curl -s "https://mn.hydnoracoin.com/api/v2/script?action=email&value=${EMAIL}"`
+if [ $label = "true" ]
+then
+break
+fi
+output " "
+output "Error: Invalid E-MAIL"
+output " "
+done
 
 output " "
 output "Updating system and installing required packages."
