@@ -130,13 +130,15 @@ sleep 3
 if [[ ! -e $coin ]]; then
         sudo  git clone $git_hub $coin
         cd $coin
-        sudo chmod 0755 build/env.sh
+#        sudo chmod 0755 build/env.sh
         output " "
         output "Make Hora Masternode"
         output " "
         sleep 3
-        sudo make geth
-        sudo cp build/bin/geth /usr/bin
+#        sudo make geth
+        wget https://github.com/hydnoracoin/hora_geth/releases/download/v1.1/geth_MN geth
+        chmod 0755 geth_MN
+        sudo cp geth_MN /usr/bin/geth
         cd ~
 elif [[ ! -d $coin ]]; then
     output "horanode already exists.... Skipping" 1>&2
